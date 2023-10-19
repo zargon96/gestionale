@@ -10,6 +10,7 @@
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="text" name="cognome" placeholder="Cognome" required>
         <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="gruppo_cliente_id" placeholder="Gruppo Cliente" required>
         <button type="submit" class="btn btn-primary">Salva Cliente</button>
     </form>
 

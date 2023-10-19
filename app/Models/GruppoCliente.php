@@ -11,7 +11,7 @@ class GruppoCliente extends Model
     
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->hasOne(Cliente::class, 'gruppo_cliente_id');
     }
 
 }

@@ -13,13 +13,15 @@ class CreateClientiTable extends Migration
             $table->string('nome');
             $table->string('cognome');
             $table->string('email');
+            $table->unsignedBigInteger('gruppo_cliente_id');
+            $table->foreign('gruppo_cliente_id')->references('id')->on('gruppi_clienti');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('cliente');
+        Schema::dropIfExists('cliente'); 
     }
 }
 

@@ -17,24 +17,45 @@ class ClienteController extends Controller
         return view('clienti.create');
     }
 
+    // public function store(Request $request)
+    // {
+    //     // Valida i dati del form
+    //     $request->validate([
+    //         'nome' => 'required',
+    //         'cognome' => 'required',
+    //         'email' => 'required|email',
+    //     ]);
+
+    //     // Salva il nuovo cliente nel database
+    //     Cliente::create([
+    //         'nome' => $request->input('nome'),
+    //         'cognome' => $request->input('cognome'),
+    //         'email' => $request->input('email'),
+    //     ]);
+
+    //     return redirect()->route('clienti.index')->with('success', 'Cliente creato con successo');
+    // }
+
     public function store(Request $request)
     {
-        // Valida i dati del form
         $request->validate([
             'nome' => 'required',
             'cognome' => 'required',
             'email' => 'required|email',
+            'gruppo_cliente_id' => 'required', 
         ]);
 
-        // Salva il nuovo cliente nel database
-        Cliente::create([
+        $cliente = Cliente::create([
             'nome' => $request->input('nome'),
             'cognome' => $request->input('cognome'),
             'email' => $request->input('email'),
+            'gruppo_cliente_id' => $request->input('gruppo_cliente_id'), 
         ]);
+        
 
         return redirect()->route('clienti.index')->with('success', 'Cliente creato con successo');
     }
+
 
     public function show($id)
 
@@ -66,25 +87,46 @@ class ClienteController extends Controller
     
     
 
+    // public function update(Request $request, $id)
+    // {
+    //     // Valida i dati del modulo di modifica
+    //     $request->validate([
+    //         'nome' => 'required',
+    //         'cognome' => 'required',
+    //         'email' => 'required|email',
+    //     ]);
+
+    //     // Aggiorna il cliente nel database
+    //     $cliente = Cliente::find($id);
+    //     $cliente->update([
+    //         'nome' => $request->input('nome'),
+    //         'cognome' => $request->input('cognome'),
+    //         'email' => $request->input('email'),
+    //     ]);
+
+    //     return redirect()->route('clienti.index')->with('success', 'Cliente aggiornato con successo');
+    // }
+
     public function update(Request $request, $id)
     {
-        // Valida i dati del modulo di modifica
         $request->validate([
             'nome' => 'required',
             'cognome' => 'required',
             'email' => 'required|email',
+            'gruppo_cliente_id' => 'required', // Assicurati di avere un campo per selezionare il gruppo cliente
         ]);
 
-        // Aggiorna il cliente nel database
         $cliente = Cliente::find($id);
         $cliente->update([
             'nome' => $request->input('nome'),
             'cognome' => $request->input('cognome'),
             'email' => $request->input('email'),
+            'gruppo_cliente_id' => $request->input('gruppo_cliente_id'), // Aggiorna l'associazione al gruppo cliente
         ]);
 
         return redirect()->route('clienti.index')->with('success', 'Cliente aggiornato con successo');
     }
+
 
     public function destroy($id)
     {
